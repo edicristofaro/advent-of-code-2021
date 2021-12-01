@@ -36,5 +36,17 @@ def count_increases(depth_measurements: List[int]) -> int:
 
     return increases
 
-assert count_increases(sample) == 7
-print(count_increases(depth_measurements))
+# part 2 is revealed after part 1 and asks to do the same comparison using a sliding window of 3 observations
+# this function can work generically for any window size including the part 1 problem (where we'd pass window = 1)
+# i'll leave the part 1 solution above, but we don't actually need it anymore
+def count_increases_window(depth_measurements: List[int], window: int = 3) -> int:
+    increases = 0
+
+    for i in range(window, len(depth_measurements)):
+        if sum(depth_measurements[i-window+1:i+1]) > sum(depth_measurements[i-window:i]):
+            increases += 1
+    
+    return increases
+
+print(count_increases_window(depth_measurements, 1)) #part 1
+print(count_increases_window(depth_measurements, 3)) #part 2
