@@ -43,11 +43,51 @@ g, e = power_usage(sample)
 print(g * e)
 
 #part 2
-def life_support_rating(obs: List[str]) -> int:
-    oxygen_generator_rating = ''
-    co2_scrubber_rating = ''
+def calculate_significant_bit(num_list: str, round_up: bool = True) -> int:
+    num_list = [int(x) for x in num_list]
+    zeroes = num_list.count(0)
+    ones = num_list.count(1)
 
-    return int(oxygen_generator_rating, 2), int(co2_scrubber_rating, 2)
+    if zeroes > ones:
+        return 0
+    elif zeroes < ones:
+        return 1
+    elif zeroes == ones and round_up:
+        return 1
+    else:
+        return 0
+
+def filter_list_by_bit_position(num_list: str, bit_position: int, mode: int) -> str:
+    keep = []
+
+    for n in num_list:
+        if int(n[bit_position]) == mode:
+            keep.append(n)
+    
+    return keep
+
+def life_support_rating(obs: List[str]) -> int:
+    width = len(obs[0])
+    oxy_obs = obs
+    co2_obs = obs
+
+    # if this were to be reused, should be a function, recursive solution would be better than breaking the loop
+    # but it's acceptably janky because we're using it once and submitting only the answer
+    for i in range(0, width):
+        place = [x[i] for x in oxy_obs]
+        mode = calculate_significant_bit(place)
+        oxy_obs = filter_list_by_bit_position(oxy_obs, i, mode)
+        if len(oxy_obs) == 1:
+            break
+
+    for i in range(0, width):
+        place = [x[i] for x in co2_obs]
+        mode = 1 if calculate_significant_bit(place, round_up=True) == 0 else 0
+        co2_obs = filter_list_by_bit_position(co2_obs, i, mode)
+        if len(co2_obs) == 1:
+            break
+    
+    return int(oxy_obs[0], 2), int(co2_obs[0], 2)
     
 o, c = life_support_rating(observations)
 print(o * c)
