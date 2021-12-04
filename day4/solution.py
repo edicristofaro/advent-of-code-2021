@@ -101,3 +101,15 @@ for row in winning_card:
 
 print(sum_of_card)
 print(sum_of_card * winning_number)
+
+"""
+Since my motivation for completing these puzzles daily was to have an excuse to write a little bit of code and knock some rust off, 
+it's probably worth looking at my completed solutions and at least bullet out what i'd do differently if this was "real" code.
+
+- bingo cards should probably be wrapped in a class, instead of a list of lists of ints (5x5 was specified in the problem itself)
+- there's a lot of repeated code, could take the time to clean up and refactor/extend part 1 to write part 2
+- loops over ranges still feel pretty clunky in python, prob should enumerate() but it's 5x5 by spec
+- mark_card() and the winner functions should clearly be methods of a card class
+- i spent more time dealing with the inputs than i did writing part 1, so i prob need to remember how file inputs work
+- python sets can't contain lists, only hashable types
+"""
