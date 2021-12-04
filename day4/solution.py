@@ -112,4 +112,6 @@ it's probably worth looking at my completed solutions and at least bullet out wh
 - mark_card() and the winner functions should clearly be methods of a card class
 - i spent more time dealing with the inputs than i did writing part 1, so i prob need to remember how file inputs work
 - python sets can't contain lists, only hashable types
+- in hindsight, using 0 to mark called numbers would've saved some effort. im guilty of not reading the problem statement through
+    and seeing that i'd need to sum the open numbers at the end and that 0 wasn't used in the game
 """
