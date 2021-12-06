@@ -30,3 +30,4 @@ print(project_population_stupid(lanternfish_seeds, 80))
 # keep a hash of key:value pairs of timer:count
 # each day, move each population to the next lower timer value (e.g. 8 -> 7, 6 -> 5, etc.)
 # those in 0 go to 6, and the same number gets added to 8
+# i cheated a little here by peeking at someone else's excel solution
