@@ -28,10 +28,8 @@ def project_population_optimized(lanternfish_seeds, days):
         fish[f] += 1
     
     for d in range(1, days+1):
-        # print(fish)
         spawn = 0
         for i in range(0,9):
-            # print(f"Day: {d} - Bucket: {i} -  Population: {fish[i]}")
             if i == 0:
                 spawn = fish[i]
             fish[i] = fish.get(i+1, 0)
