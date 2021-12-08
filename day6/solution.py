@@ -1,4 +1,4 @@
-with open("sample_input.txt", "r") as f:
+with open("input.txt", "r") as f:
     contents = f.readlines()
 
 lanternfishes = []
@@ -22,12 +22,32 @@ def project_population_stupid(lanternfish_seeds, days):
     return len(lanternfish_seeds)
 
 
+def project_population_optimized(lanternfish_seeds, days):
+    fish = { i: 0 for i in range(0,9)}
+    for f in lanternfish_seeds:
+        fish[f] += 1
+    
+    for d in range(1, days+1):
+        # print(fish)
+        spawn = 0
+        for i in range(0,9):
+            # print(f"Day: {d} - Bucket: {i} -  Population: {fish[i]}")
+            if i == 0:
+                spawn = fish[i]
+            fish[i] = fish.get(i+1, 0)
+        
+        fish[6] += spawn
+        fish[8] += spawn
+
+    return sum(fish.values())
+
 print(project_population_stupid(lanternfish_seeds, 80))
+print(project_population_optimized(lanternfish_seeds, 80))
+print(project_population_optimized(lanternfish_seeds, 256))
 # print(project_population_stupid(lanternfish_seeds, 256))
 
 # uh oh. gotta do something different.
 # don't track every fish, we only care about their timer value.
 # keep a hash of key:value pairs of timer:count
 # each day, move each population to the next lower timer value (e.g. 8 -> 7, 6 -> 5, etc.)
-# those in 0 go to 6, and the same number gets added to 8
-# i cheated a little here by peeking at someone else's excel solution
+# i cheated a little by seeing how someone solved in excel, but the implementation is now above.
