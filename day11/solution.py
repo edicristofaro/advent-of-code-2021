@@ -1,7 +1,6 @@
 with open("input.txt", "r") as f:
     seeds = [l.strip("\n") for l in f.readlines()]
 
-# retry
 octopus_grid = {}
 for i, y in enumerate(seeds):
     row = []
