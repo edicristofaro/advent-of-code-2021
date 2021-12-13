@@ -1,8 +1,6 @@
 import copy
 import sys
 
-sys.setrecursionlimit(1500)
-
 with open("input.txt", "r") as f:
     edges = [l.strip("\n") for l in f.readlines()]
 
