@@ -1,6 +1,7 @@
 import matplotlib
 import sys
-matplotlib.use('Agg')
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
@@ -17,6 +18,7 @@ for p in data:
     elif p:
         dots.append(tuple(map(int, p.split(","))))
 
+
 def fold_up(dots, y_intercept):
     folded_dots = []
 
@@ -31,6 +33,7 @@ def fold_up(dots, y_intercept):
                 folded_dots.append(folded_point)
 
     return folded_dots
+
 
 def fold_left(dots, x_intercept):
     folded_dots = []
@@ -47,11 +50,12 @@ def fold_left(dots, x_intercept):
 
     return folded_dots
 
+
 # part 1
 folded = fold_left(dots, 655)
 print(len(folded))
 
-#part 2
+# part 2
 folded = dots
 for fold in folds:
     if fold[0] == "x":
